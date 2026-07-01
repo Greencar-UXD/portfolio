@@ -1,0 +1,279 @@
+/* LANDING — 현대차 합격용 v3 (주제 주입 + 시그니처) ————————————————————
+   정보설계(채용담당자 순서)는 유지. frontend-design 보완:
+   · 시그니처 = '왜 현대차' 매칭을 HW↔SW 잇는 신호 라인으로 — 강민관의 직무가 곧 형태
+   · 타입 3역할 분리: 한글 Pretendard / 라틴 Space Grotesk / 데이터 Geist Mono
+   · 주제 디테일은 절제(계기 코스프레 회피) — HMI 그리드 암시 + 모노 좌표만
+   케이스 13p(studio.css)는 그대로. 랜딩 전용 lp-* 네임스페이스.
+   ———————————————————————————————————————————————————————————————— */
+
+:root {
+  --bg:        #FFFFFF;
+  --bg-alt:    #F4F7FB;
+  --hw:        #EDF1F6;   /* HW면 — 시스템/목표 톤(약한 스틸) */
+  --ink-deep:  #0E1825;   /* 연구·footer 진한 면 */
+  --card:      #FFFFFF;
+  --ink:       #16202E;
+  --ink-mid:   #45515F;
+  --ink-dim:   #6A7686;
+  --cobalt:    #2D5BFF;
+  --cobalt-deep: #1E40D8;
+  --cobalt-hi: #6E92FF;
+  --cobalt-soft: #ECF1FF;
+  --line:      #E2E7EE;
+  --shadow:    0 1px 2px rgba(16,28,42,0.04), 0 6px 22px rgba(16,28,42,0.07);
+  --shadow-hi: 0 2px 6px rgba(16,28,42,0.06), 0 16px 40px rgba(45,91,255,0.15);
+  --sans:    'Pretendard Variable','Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --display: 'Space Grotesk', 'Pretendard', sans-serif;   /* 라틴 디스플레이 */
+  --mono:    'Geist Mono', ui-monospace, monospace;        /* 데이터·좌표·상태 */
+}
+
+body { background: var(--bg); color: var(--ink); }
+.st-wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 4px;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+.st-nav {
+  background: rgba(255,255,255,0.86);
+  -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px);
+  border: none; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50;
+}
+.st-nav-in { color: var(--ink); }
+.st-brand { color: var(--ink); font-weight: 700; }
+.st-brand .en { font-family: var(--display); color: var(--ink-dim); font-weight: 500; font-size: 0.78em; letter-spacing: 0.02em; }
+.st-nav-links a { color: var(--ink-mid); transition: color .2s; }
+.st-nav-links a:hover { color: var(--ink); }
+.st-nav-links .cta { background: var(--cobalt); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-weight: 600; }
+.st-nav-links .cta:hover { background: var(--cobalt-deep); color: #fff; }
+
+/* ── 공통 kicker(라틴 디스플레이) / sec-head ──────────── */
+.kicker {
+  font-family: var(--display); font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--cobalt);
+}
+.kicker .i { opacity: .4; margin: 0 6px; font-weight: 500; }
+.lp-sec-head { margin-bottom: 56px; max-width: 740px; }
+.lp-sec-head .kicker { margin-bottom: 18px; display: block; }
+.lp-sec-head h2 {
+  font-family: var(--sans); font-size: clamp(30px, 4.2vw, 48px); font-weight: 780;
+  letter-spacing: -0.04em; line-height: 1.08; color: var(--ink); margin: 0 0 16px; word-break: keep-all;
+}
+.lp-sec-head p { color: var(--ink-mid); font-size: 16px; line-height: 1.65; margin: 0; }
+
+/* ── HERO (HMI 그리드 암시 — 절제) ───────────────────── */
+.lp-hero {
+  position: relative; overflow: hidden;
+  background: var(--bg); border-bottom: 1px solid var(--line); padding: 104px 0 84px;
+}
+.lp-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 1px 1px, rgba(45,91,255,0.07) 1px, transparent 0) 0 0 / 26px 26px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
+}
+.lp-hero .st-wrap { position: relative; z-index: 1; }
+.lp-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+.lp-hero-lead .kicker { display: block; margin-bottom: 24px; }
+.lp-hero h1 {
+  font-family: var(--sans); font-size: clamp(44px, 6.2vw, 84px); font-weight: 800;
+  letter-spacing: -0.045em; line-height: 1.0; color: var(--ink); margin: 0; word-break: keep-all;
+}
+.lp-hero h1 em { font-style: normal; color: var(--cobalt); }
+.lp-hero .lead { margin: 26px 0 0; max-width: 46ch; font-size: 17.5px; line-height: 1.66; color: var(--ink-mid); }
+.lp-hero .lead b { color: var(--ink); font-weight: 600; }
+.lp-hero-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 34px; font-family: var(--mono); font-size: 13px; color: var(--ink-dim); align-items: center; }
+.lp-hero-meta .av { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-mid); font-weight: 500; }
+.lp-hero-meta .av::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,0.18); }
+.lp-hero-meta a { color: var(--cobalt); text-decoration: none; border-bottom: 1px solid transparent; }
+.lp-hero-meta a:hover { border-bottom-color: var(--cobalt); }
+
+/* Hero 증거 카드 — 계기 채널 라벨(모노) */
+.lp-proof { display: flex; flex-direction: column; gap: 12px; }
+.lp-proof-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 4px; }
+.lp-proof-card {
+  display: block; padding: 22px 24px; background: var(--card);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  text-decoration: none; position: relative; transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.lp-proof-card:hover { box-shadow: var(--shadow-hi); transform: translateY(-3px); border-color: rgba(45,91,255,0.35); }
+.pc-tag { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; color: var(--cobalt); background: var(--cobalt-soft); padding: 4px 9px; border-radius: 5px; margin-bottom: 12px; }
+.lp-proof-card h3 { font-size: 16.5px; font-weight: 700; color: var(--ink); margin: 0 0 7px; letter-spacing: -0.01em; }
+.lp-proof-card p { font-size: 13px; line-height: 1.55; color: var(--ink-dim); margin: 0; }
+
+/* ══ SIGNATURE: WHY HYUNDAI — HW↔SW를 잇는 신호 ══════════ */
+.lp-fit { background: var(--bg); padding: 104px 0; }
+.lp-fit-list { display: flex; flex-direction: column; gap: 14px; }
+.lp-fit-row {
+  display: grid; grid-template-columns: 1fr 92px 1.4fr; align-items: stretch;
+  border-radius: 14px; transition: background .25s;
+}
+.lp-fit-row:hover { background: var(--bg-alt); }
+/* 좌: 현대차 방향 = 목표/시스템(HW면) */
+.ff-where {
+  padding: 26px 28px; display: flex; flex-direction: column; justify-content: center;
+  background: var(--hw); border: 1px solid var(--line); border-radius: 12px;
+}
+/* 우: 내 경험 = 실행/증거(SW면) */
+.ff-have {
+  padding: 26px 28px; background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center;
+}
+.ff-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 9px; }
+.ff-where .ff-k { color: #8794A4; }
+.ff-have .ff-k { color: var(--cobalt); }
+.ff-where .ff-v { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.3; }
+.ff-have .ff-v { font-size: 15px; line-height: 1.6; color: var(--ink-mid); }
+.ff-have .ff-v b { color: var(--ink); font-weight: 600; }
+/* 가운데: 잇는 신호 라인 + 노드 (시그니처) */
+.ff-link { position: relative; }
+.ff-link::before {
+  content: ''; position: absolute; top: 50%; left: 6px; right: 16px; height: 2px;
+  background: linear-gradient(90deg, #B9C4D2 0%, var(--cobalt) 70%); transform: translateY(-50%);
+}
+.ff-link::after {
+  content: ''; position: absolute; top: 50%; right: 12px; width: 9px; height: 9px;
+  border-top: 2px solid var(--cobalt); border-right: 2px solid var(--cobalt);
+  transform: translateY(-50%) rotate(45deg);
+}
+/* 출발 노드(좌) + hover 신호 점등 */
+.ff-link i {
+  position: absolute; top: 50%; left: 2px; width: 8px; height: 8px; border-radius: 50%;
+  background: #B9C4D2; transform: translateY(-50%); transition: background .25s, box-shadow .25s;
+}
+.lp-fit-row:hover .ff-link i { background: var(--cobalt); box-shadow: 0 0 0 4px rgba(45,91,255,0.15); }
+.lp-fit-row:hover .ff-have { border-color: rgba(45,91,255,0.3); }
+
+/* ── SELECTED WORK ───────────────────────────────────── */
+.lp-work { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 100px 0; }
+.lp-work-list { display: grid; gap: 14px; }
+.lp-work-row {
+  display: grid; grid-template-columns: auto minmax(0,2.3fr) minmax(0,1.25fr) auto auto;
+  gap: 24px; align-items: center; padding: 24px 26px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  text-decoration: none; transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.lp-work-row:hover { box-shadow: var(--shadow-hi); transform: translateY(-2px); border-color: rgba(45,91,255,0.3); }
+.lp-work-row .wn { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 9px; background: var(--cobalt-soft); color: var(--cobalt); font-family: var(--mono); font-size: 13px; font-weight: 600; }
+.lp-work-row .wt h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin: 0 0 5px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lp-work-row .wt h3 .badge { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.03em; color: #fff; background: var(--cobalt); padding: 3px 8px; border-radius: 5px; }
+.lp-work-row .wt .role { font-size: 12.5px; color: var(--ink-dim); }
+.lp-work-row .wtags { display: flex; gap: 7px; flex-wrap: wrap; }
+.lp-work-row .wtags span { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--cobalt); background: var(--cobalt-soft); padding: 4px 10px; border-radius: 6px; }
+.lp-work-row .wyear { font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim); white-space: nowrap; }
+.lp-work-row .war { color: var(--ink-dim); font-size: 16px; transition: color .2s, transform .2s; }
+.lp-work-row:hover .war { color: var(--cobalt); transform: translate(2px,-2px); }
+
+/* ── RESEARCH (진한 톤, 핵심 강조) ───────────────────── */
+.lp-research { background: var(--ink-deep); color: #E8ECF3; padding: 104px 0; position: relative; overflow: hidden; }
+.lp-research::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: radial-gradient(circle at 1px 1px, rgba(110,146,255,0.10) 1px, transparent 0) 0 0 / 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse at 80% 0%, #000, transparent 70%);
+  mask-image: radial-gradient(ellipse at 80% 0%, #000, transparent 70%);
+}
+.lp-research-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 64px; align-items: start; }
+.lp-research .kicker { color: var(--cobalt-hi); display: block; margin-bottom: 20px; }
+.lp-research h2 {
+  font-family: var(--sans); font-size: clamp(30px, 4vw, 50px); font-weight: 780;
+  letter-spacing: -0.035em; line-height: 1.1; color: #fff; margin: 0 0 22px; word-break: keep-all;
+}
+.lp-research h2 em { font-style: normal; color: var(--cobalt-hi); }
+.lp-research-lead > p { font-size: 17px; line-height: 1.7; color: #AEB8C7; max-width: 52ch; margin: 0 0 32px; }
+.lp-research-lead > p b { color: #fff; font-weight: 600; }
+.lp-research-cite { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.12); }
+.rc-row { display: grid; grid-template-columns: 70px 1fr; gap: 18px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.rc-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7A8699; }
+.rc-v { font-size: 14px; line-height: 1.5; color: #D4DBE6; }
+.rc-v.mono { font-family: var(--mono); color: var(--cobalt-hi); }
+/* 5대 구성요소 — 위계(첫 항목 강조) */
+.lp-research-side { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 26px 28px; }
+.lp-comp-label { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #92A0B5; margin-bottom: 6px; }
+.lp-comp-note { font-family: var(--mono); font-size: 10.5px; color: #6E7B8E; margin-bottom: 16px; }
+.lp-comp { list-style: none; margin: 0; padding: 0; }
+.lp-comp li { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+.lp-comp li:first-child { border-top: none; }
+.lp-comp .cn { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--cobalt-hi); width: 20px; }
+.lp-comp .ct { font-size: 15px; font-weight: 600; color: #EDF1F7; }
+.lp-comp li:first-child .ct { color: #fff; }
+.lp-comp li:first-child .cn { color: #fff; }
+
+/* ── HOW I WORK + MORE ───────────────────────────────── */
+.lp-about { background: var(--bg); padding: 100px 0; }
+.lp-about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; margin-bottom: 88px; }
+.lp-about-lead .kicker { display: block; margin-bottom: 18px; }
+.lp-about-lead h2 { font-family: var(--sans); font-size: clamp(26px, 3.4vw, 40px); font-weight: 780; letter-spacing: -0.035em; line-height: 1.14; color: var(--ink); margin: 0; word-break: keep-all; }
+.lp-about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
+.lp-trait h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin: 0 0 8px; }
+.lp-trait p { font-size: 13.5px; line-height: 1.62; color: var(--ink-mid); margin: 0; }
+.lp-about-facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 12px; padding-top: 28px; border-top: 1px solid var(--line); }
+.lp-about-facts .li { display: flex; flex-direction: column; gap: 6px; }
+.lp-about-facts .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cobalt); }
+.lp-about-facts .v { font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.45; }
+
+/* More projects */
+.lp-more-head { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.lp-more-head .en { font-family: var(--display); font-size: 11px; font-weight: 600; color: var(--ink-dim); letter-spacing: 0.04em; text-transform: uppercase; margin-left: 8px; }
+.lp-more-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 36px; }
+.lp-more-grp .co { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+.lp-more-grp .co small { font-family: var(--mono); font-size: 10.5px; font-weight: 400; color: var(--ink-dim); margin-left: 6px; }
+.lp-more-grp a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 11px 0; border-top: 1px solid var(--line); text-decoration: none; transition: padding .18s; }
+.lp-more-grp a:hover { padding-left: 6px; }
+.lp-more-grp a .t { font-size: 13.5px; color: var(--ink-mid); font-weight: 500; word-break: keep-all; }
+.lp-more-grp a:hover .t { color: var(--cobalt); }
+.lp-more-grp a .yr { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); white-space: nowrap; }
+
+/* ── CTA ─────────────────────────────────────────────── */
+.lp-cta { background: var(--cobalt); padding: 104px 0; text-align: center; position: relative; overflow: hidden; }
+.lp-cta::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0) 0 0 / 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 120%, #000, transparent 70%);
+  mask-image: radial-gradient(ellipse at 50% 120%, #000, transparent 70%);
+}
+.lp-cta .st-wrap { position: relative; z-index: 1; }
+.lp-cta .kicker { color: rgba(255,255,255,0.8); display: block; margin-bottom: 22px; }
+.lp-cta h2 { font-family: var(--sans); font-size: clamp(30px, 4.4vw, 54px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; color: #fff; margin: 0 0 8px; word-break: keep-all; }
+.lp-cta .mail { display: inline-block; margin-top: 30px; font-family: var(--display); font-size: clamp(19px, 2.5vw, 28px); font-weight: 600; color: var(--cobalt); background: #fff; text-decoration: none; padding: 14px 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.16); transition: transform .2s, box-shadow .2s; }
+.lp-cta .mail:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.24); }
+.lp-cta .cta-sub { margin-top: 22px; font-size: 13.5px; color: rgba(255,255,255,0.82); }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.st-foot { background: var(--ink-deep); border: none; padding: 36px 0; }
+.st-foot .st-wrap { font-size: 12.5px; color: #8893A3; }
+.st-foot .ds { font-family: var(--mono); }
+
+/* ── REVEAL ──────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 980px) {
+  .lp-hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .lp-research-grid { grid-template-columns: 1fr; gap: 36px; }
+  .lp-about-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 64px; }
+  .lp-more-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 760px) {
+  .st-wrap { padding: 0 22px; }
+  .lp-hero { padding: 80px 0 60px; }
+  .lp-fit, .lp-work, .lp-about, .lp-research, .lp-cta { padding: 72px 0; }
+  /* 매칭: 세로 스택 + 아래방향 신호 */
+  .lp-fit-row { grid-template-columns: 1fr; }
+  .ff-where { border-radius: 12px 12px 0 0; }
+  .ff-have { border-radius: 0 0 12px 12px; border-top: none; }
+  .ff-link { height: 38px; }
+  .ff-link::before { top: 8px; bottom: 10px; left: 50%; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, #B9C4D2, var(--cobalt)); transform: translateX(-50%); }
+  .ff-link::after { top: auto; bottom: 8px; right: auto; left: 50%; transform: translateX(-50%) rotate(135deg); }
+  .ff-link i { top: 6px; left: 50%; transform: translateX(-50%); }
+  .lp-work-row { grid-template-columns: auto 1fr auto; gap: 6px 14px; }
+  .lp-work-row .wtags { grid-column: 2 / -1; }
+  .lp-work-row .wyear { grid-column: 2; }
+  .lp-work-row .war { display: none; }
+  .lp-about-body { grid-template-columns: 1fr; gap: 22px; }
+  .lp-about-facts { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
